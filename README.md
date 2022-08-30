@@ -11,3 +11,5 @@ GAS_REPORT=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
+Token address: 0xb46De0A4AD2Ef64b6008d554d9Cc3b9Bd8784252
