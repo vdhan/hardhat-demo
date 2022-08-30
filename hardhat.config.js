@@ -1,4 +1,6 @@
-require('@nomicfoundation/hardhat-toolbox');
+// require('@nomicfoundation/hardhat-toolbox');
+require('@nomiclabs/hardhat-ethers');
+require('@nomiclabs/hardhat-etherscan');
 
 const { mnemonic, BscScan} = require('./env.json');
 
@@ -35,6 +37,10 @@ module.exports = {
         mnemonic: mnemonic
       }
     }
+  },
+
+  etherscan: {
+    apiKey: BscScan
   },
 
   solidity: {
