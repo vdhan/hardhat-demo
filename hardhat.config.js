@@ -1,20 +1,14 @@
-// require('@nomicfoundation/hardhat-toolbox');
 require('@nomiclabs/hardhat-ethers');
 require('@nomiclabs/hardhat-etherscan');
 
 const { mnemonic, BscScan} = require('./env.json');
 
-task('accounts', 'Print list of accounts', async () => {
-  const accounts = await ethers.getSigners();
-
-  for (let account of accounts) {
-    console.log(account.address);
-  }
-});
-
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   defaultNetwork: 'mainnet',
+  etherscan: {
+    apiKey: BscScan
+  },
+
   networks: {
     localhost: {
       url: 'http://127.0.0.1:8545'
@@ -39,8 +33,8 @@ module.exports = {
     }
   },
 
-  etherscan: {
-    apiKey: BscScan
+  mocha: {
+    timeout: 20000
   },
 
   solidity: {
@@ -57,9 +51,5 @@ module.exports = {
     tests: './test',
     cache: './cache',
     artifacts: './artifacts'
-  },
-
-  mocha: {
-    timeout: 20000
   }
 };
