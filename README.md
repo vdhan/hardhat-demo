@@ -2,18 +2,32 @@
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
-Try running some of the following tasks:
+## For deploying local:
 
 ```shell
-npx hardhat help
-npx hardhat test
-GAS_REPORT=true npx hardhat test
+pnpm install
+npx hardhat compile
 npx hardhat node
-npx hardhat run scripts/deploy.js
 ```
 
-Token address: 0xb46De0A4AD2Ef64b6008d554d9Cc3b9Bd8784252
+Open other terminal tab
+
+```shell
+npx hardhat run --network localhost scripts/deploy.js
+npx hardhat test
+GAS_REPORT=true npx hardhat test
+```
+
+Contract address: 0xb46De0A4AD2Ef64b6008d554d9Cc3b9Bd8784252
+
+Verify contract
 
 ```shell
 npx hardhat verify --network testnet {contract-address}
+```
+
+Upgrade contract
+
+```shell
+npx hardhat run --network localhost scripts/upgrade.js
 ```
