@@ -18,16 +18,23 @@ npx hardhat console --network localhost
 npx hardhat test
 ```
 
-Contract address: 0xb46De0A4AD2Ef64b6008d554d9Cc3b9Bd8784252
+Upgrade contract
+
+```shell
+npx hardhat run --network localhost scripts/upgrade.js
+```
+
+Deploy testnet
+
+```shell
+npx hardhat run --network testnet scripts/deploy.js
+```
+
+Proxy address: 0x3b0c224538e323616Ba25344E3eDF81c9B71f014
+Contract address: 0x139072bEbfF70bD0fa38251aE6f6827c075CeFDD
 
 Verify contract
 
 ```shell
 npx hardhat verify --network testnet {contract-address}
-```
-
-Upgrade contract
-
-```shell
-npx hardhat run --network localhost scripts/upgrade.js
 ```

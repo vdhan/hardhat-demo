@@ -1,18 +1,15 @@
+const {ethers, upgrades} = require('hardhat');
+
 async function main() {
-  const [deployer] = await ethers.getSigners();
+  const CONTRACT = 'BEP20Token'; // Contract for deploying
+  console.log(`${CONTRACT} deploying...`);
 
-  console.log('Deploying contracts with the account:', deployer.address);
-  console.log('Account balance:', (await deployer.getBalance()).toString());
-
-  const Token = await ethers.getContractFactory('BEP20Token');
-  const token = await Token.deploy();
-
-  console.log('Token address:', token.address);
+  const Contract = await ethers.getContractFactory(CONTRACT);
+  const smartContract = await upgrades.deployProxy(Contract, {kind: 'uups'});
+  console.log(`Contract deployed to address: ${smartContract.address}`);
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+main().then(() => process.exit(0)).catch(error => {
+  console.error(error);
+  process.exit(1);
+});

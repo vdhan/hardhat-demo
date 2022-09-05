@@ -74,7 +74,7 @@ contract BEP20Token is IBEP20, Initializable, OwnableUpgradeable, PausableUpgrad
     }
 
     function transferFrom(address sender, address recipient, uint amount) external returns (bool) {
-        address payable msgSender = _msgSender();
+        address msgSender = _msgSender();
 
         _transfer(sender, recipient, amount);
         _approve(sender, msgSender, _allowances[sender][msgSender].sub(
@@ -91,7 +91,7 @@ contract BEP20Token is IBEP20, Initializable, OwnableUpgradeable, PausableUpgrad
     }
 
     function increaseAllowance(address spender, uint addedValue) public returns (bool) {
-        address payable msgSender = _msgSender();
+        address msgSender = _msgSender();
         _approve(msgSender, spender, _allowances[msgSender][spender].add(addedValue));
         return true;
     }
@@ -158,7 +158,7 @@ contract BEP20Token is IBEP20, Initializable, OwnableUpgradeable, PausableUpgrad
     }
 
     function _burnFrom(address account, uint amount) internal {
-        address payable msgSender = _msgSender();
+        address msgSender = _msgSender();
 
         _burn(account, amount);
         _approve(account, msgSender, _allowances[account][msgSender].sub(amount, "BEP20: burn amount exceeds allowance"));
