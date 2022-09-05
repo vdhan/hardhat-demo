@@ -16,6 +16,7 @@ Open other terminal tab
 npx hardhat run --network localhost scripts/deploy.js
 npx hardhat console --network localhost
 npx hardhat test
+npx hardhat run --network localhost scripts/index.js
 ```
 
 Upgrade contract
@@ -30,8 +31,7 @@ Deploy testnet
 npx hardhat run --network testnet scripts/deploy.js
 ```
 
-Proxy address: 0x3b0c224538e323616Ba25344E3eDF81c9B71f014  
-Contract address: 0x139072bEbfF70bD0fa38251aE6f6827c075CeFDD
+Address: 0x3b0c224538e323616Ba25344E3eDF81c9B71f014
 
 Verify contract
 
