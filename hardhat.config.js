@@ -11,14 +11,12 @@ module.exports = {
   networks: {
     testnet: {
       url: 'https://data-seed-prebsc-1-s1.binance.org:8545',
-      accounts: {mnemonic: mnemonic},
-      gasPrice: 5000000000
+      accounts: {mnemonic: mnemonic}
     },
 
     mainnet: {
       url: 'https://bsc-dataseed.binance.org/',
-      accounts: {mnemonic: mnemonic},
-      gasPrice: 5000000000
+      accounts: {mnemonic: mnemonic}
     }
   },
 

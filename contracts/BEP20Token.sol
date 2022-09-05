@@ -2,73 +2,14 @@
 /// @author Vũ Đắc Hoàng Ân
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "./IBEP20.sol";
 import "./SafeMath.sol";
 
-interface IBEP20 {
-    function name() external view returns (string memory);
-    function symbol() external view returns (string memory);
-    function decimals() external view returns (uint8);
-    function totalSupply() external view returns (uint);
-    function getOwner() external view returns (address);
-
-    function balanceOf(address account) external view returns (uint);
-    function transfer(address recipient, uint amount) external returns (bool);
-    function allowance(address _owner, address spender) external view returns (uint);
-    function transferFrom(address sender, address recipient, uint amount) external returns (bool);
-    function approve(address spender, uint amount) external returns (bool);
-
-    event Transfer(address indexed from, address indexed to, uint value);
-    event Approval(address indexed owner, address indexed spender, uint value);
-}
-
-abstract contract Context {
-    function _msgSender() internal view returns (address payable) {
-        return payable(msg.sender);
-    }
-
-    function _msgData() internal pure returns (bytes memory) {
-        return msg.data;
-    }
-}
-
-abstract contract Ownable is Context {
-    address private _owner;
-
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
-    modifier onlyOwner() {
-        require(_owner == _msgSender(), "Ownable: caller is not owner");
-        _;
-    }
-
-    constructor() {
-        address msgSender = _msgSender();
-        _owner = msgSender;
-        emit OwnershipTransferred(address(0), msgSender);
-    }
-
-    function renounceOwnership() public onlyOwner {
-        emit OwnershipTransferred(_owner, address(0));
-        _owner = address(0);
-    }
-
-    function transferOwnership(address newOwner) public onlyOwner {
-        _transferOwnership(newOwner);
-    }
-
-    function owner() public view returns (address) {
-        return _owner;
-    }
-
-    function _transferOwnership(address newOwner) internal {
-        require(newOwner != address(0), "Ownable: new owner is the zero address");
-
-        emit OwnershipTransferred(_owner, newOwner);
-        _owner = newOwner;
-    }
-}
-
-contract BEP20Token is IBEP20, Ownable {
+contract BEP20Token is IBEP20, Initializable, OwnableUpgradeable, PausableUpgradeable, UUPSUpgradeable {
     using SafeMath for uint;
 
     string private _name;
@@ -79,8 +20,17 @@ contract BEP20Token is IBEP20, Ownable {
     mapping(address => uint) private _balances;
     mapping(address => mapping(address => uint)) private _allowances;
 
-    /// @dev update here for new token
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
+        _disableInitializers();
+    }
+
+    /// @dev update here for new token
+    function initialize() public initializer {
+        __Ownable_init();
+        __Pausable_init();
+        __UUPSUpgradeable_init();
+
         _name = "HardHat Token";
         _symbol = "HHTK";
         _decimals = 8;
@@ -160,6 +110,16 @@ contract BEP20Token is IBEP20, Ownable {
         _mint(_msgSender(), amount);
         return true;
     }
+
+    function pause() public onlyOwner {
+        _pause();
+    }
+
+    function unpause() public onlyOwner {
+        _unpause();
+    }
+
+    function _authorizeUpgrade(address) internal onlyOwner override {}
 
     function _mint(address account, uint amount) internal {
         require(account != address(0), "BEP20: mint to zero address");
