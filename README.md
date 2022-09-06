@@ -14,8 +14,8 @@ Open other terminal tab
 
 ```shell
 npx hardhat run --network localhost scripts/deploy.js
-npx hardhat console --network localhost
 npx hardhat test
+npx hardhat console --network localhost
 npx hardhat run --network localhost scripts/index.js
 ```
 
@@ -29,6 +29,7 @@ Deploy testnet
 
 ```shell
 npx hardhat run --network testnet scripts/deploy.js
+npx hardhat console --network testnet
 ```
 
 Address: 0x3b0c224538e323616Ba25344E3eDF81c9B71f014

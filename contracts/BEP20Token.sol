@@ -34,7 +34,7 @@ contract BEP20Token is IBEP20, Initializable, OwnableUpgradeable, PausableUpgrad
         _name = "HardHat Token";
         _symbol = "HHTK";
         _decimals = 8;
-        _totalSupply = 100000000000000000;
+        _totalSupply = 1000000000000000000;
 
         _balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
