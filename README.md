@@ -32,7 +32,7 @@ npx hardhat run --network testnet scripts/deploy.js
 npx hardhat console --network testnet
 ```
 
-Address: 0x3b0c224538e323616Ba25344E3eDF81c9B71f014
+Address: 0x2d68d08D2B1309f762B8933e880F354aB5Db301e
 
 Verify contract
 
