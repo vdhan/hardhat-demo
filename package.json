@@ -4,14 +4,12 @@
     "description": "Smart contract uses hardhat IDE",
     "author": "Vũ Đắc Hoàng Ân",
     "license": "GPL-3.0-or-later",
-    "dependencies": {
-        "@openzeppelin/contracts-upgradeable": "^4.7.3"
-    },
     "devDependencies": {
         "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
         "@nomicfoundation/hardhat-network-helpers": "^1.0.5",
         "@nomiclabs/hardhat-ethers": "^2.1.1",
         "@nomiclabs/hardhat-etherscan": "^3.1.0",
+        "@openzeppelin/contracts-upgradeable": "^4.7.3",
         "@openzeppelin/hardhat-upgrades": "^1.20.0",
         "chai": "^4.3.6",
         "ethers": "^5.7.0",
